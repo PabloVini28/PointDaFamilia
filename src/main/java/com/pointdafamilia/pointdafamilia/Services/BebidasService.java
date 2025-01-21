@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTO;
+import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTOAdmin;
 import com.pointdafamilia.pointdafamilia.Entities.Bebidas;
 import com.pointdafamilia.pointdafamilia.Repositories.BebidasRepository;
 
@@ -43,6 +44,10 @@ public class BebidasService {
 
     public void deletarBebida(Long id) {
         bebidasRepository.deleteById(id);
+    }
+
+    public Page<BebidasDTOAdmin> buscarPorTodasAsBebidasAdmin(Pageable page) {
+        return bebidasRepository.findAll(page).map(t -> modelMapper.map(t,BebidasDTOAdmin.class));
     }
 
 

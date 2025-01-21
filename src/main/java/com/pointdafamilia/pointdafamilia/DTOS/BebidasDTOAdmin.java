@@ -10,8 +10,10 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BebidasDTO {
+public class BebidasDTOAdmin {
     
+    private long id;
+
     @NonNull
     private String nome;
 

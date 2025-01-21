@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTO;
+import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTOAdmin;
 import com.pointdafamilia.pointdafamilia.Services.BebidasService;
 import lombok.RequiredArgsConstructor;
 import java.net.URI;
@@ -41,9 +42,9 @@ public class BebidasController {
        return ResponseEntity.ok(bebidasDTO);
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<BebidasDTO> buscarPorId(@PathVariable Long id) {
-        BebidasDTO dto = bebidasService.buscarPorId(id);
+    @GetMapping("/getAllAdmin")
+    private ResponseEntity<Page<BebidasDTOAdmin>> buscarPorId(@PageableDefault(size = 10) Pageable page) {
+        Page<BebidasDTOAdmin> dto = bebidasService.buscarPorTodasAsBebidasAdmin(page);
         return ResponseEntity.ok(dto);
     }
 
