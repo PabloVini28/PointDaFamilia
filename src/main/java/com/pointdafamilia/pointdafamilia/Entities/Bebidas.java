@@ -2,6 +2,7 @@ package com.pointdafamilia.pointdafamilia.Entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,8 +24,11 @@ public class Bebidas {
     @Column (nullable = false)
     private String nome;
 
-    @Column (nullable = false)
+    @Column (nullable = false) @Enumerated
     private Tipo tipo;
+
+    @Column(nullable = false) @Enumerated
+    private Categoria categoria;
 
     @Column (nullable = false)
     private float preco;

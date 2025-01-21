@@ -1,5 +1,6 @@
 package com.pointdafamilia.pointdafamilia.DTOS;
 
+import com.pointdafamilia.pointdafamilia.Entities.Categoria;
 import com.pointdafamilia.pointdafamilia.Entities.Tipo;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,9 @@ public class BebidasDTO {
 
     private float preco;
 
+    @NonNull
+    private Categoria categoria;
+    
     @NonNull
     private String imagem;
 
