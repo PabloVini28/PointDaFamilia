@@ -2,8 +2,10 @@ package com.pointdafamilia.pointdafamilia.DTOS;
 
 import com.pointdafamilia.pointdafamilia.Entities.Tipo;
 
+import lombok.Data;
 import lombok.NonNull;
 
+@Data
 public class BebidasDTO {
     
     @NonNull
@@ -12,7 +14,6 @@ public class BebidasDTO {
     @NonNull
     private Tipo tipo;
 
-    @SuppressWarnings("unused")
     private float preco;
 
     @NonNull
