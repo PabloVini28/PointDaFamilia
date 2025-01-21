@@ -1,6 +1,8 @@
 package com.pointdafamilia.pointdafamilia.Services;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTO;
@@ -21,6 +23,10 @@ public class BebidasService {
         bebidasRepository.save(bebida);
 
         return modelMapper.map(bebida, BebidasDTO.class);
+    }
+
+    public Page<BebidasDTO> buscarTodasAsBebidas(Pageable page) {
+        return bebidasRepository.findAll(page).map(t -> modelMapper.map(t,BebidasDTO.class));
     }
 
 
