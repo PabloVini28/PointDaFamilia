@@ -29,7 +29,7 @@ public class BebidasController {
     
     private final BebidasService bebidasService;
 
-    @PostMapping("/register")
+    @PostMapping("/cadastrar")
     public ResponseEntity<BebidasDTO> cadastrarBebidas(@RequestBody @Validated BebidasDTO bebidasDTO, UriComponentsBuilder uriBuilder) {
         BebidasDTO dto = bebidasService.criarBebida(bebidasDTO);
         URI address = uriBuilder.path("/bebida/{nome}").buildAndExpand(dto.getNome()).toUri();
