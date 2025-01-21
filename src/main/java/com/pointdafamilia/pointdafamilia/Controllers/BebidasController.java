@@ -43,7 +43,7 @@ public class BebidasController {
     }
 
     @GetMapping("/getAllAdmin")
-    private ResponseEntity<Page<BebidasDTOAdmin>> buscarPorId(@PageableDefault(size = 10) Pageable page) {
+    public ResponseEntity<Page<BebidasDTOAdmin>> buscarPorTodosAdmin(@PageableDefault(size = 10) Pageable page) {
         Page<BebidasDTOAdmin> dto = bebidasService.buscarPorTodasAsBebidasAdmin(page);
         return ResponseEntity.ok(dto);
     }
