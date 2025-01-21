@@ -29,5 +29,23 @@ public class BebidasService {
         return bebidasRepository.findAll(page).map(t -> modelMapper.map(t,BebidasDTO.class));
     }
 
+    public BebidasDTO buscarPorId(Long id) {
+        Bebidas bebida = bebidasRepository.findById(id).orElseThrow();
+        return modelMapper.map(bebida, BebidasDTO.class);
+    }
+
+    public BebidasDTO atualizarBebidas(Long id, BebidasDTO bebidasDTO) {
+        Bebidas bebida = modelMapper.map(bebidasDTO, Bebidas.class);
+        bebida.setId(id);
+        bebida = bebidasRepository.save(bebida);
+        return modelMapper.map(bebida, BebidasDTO.class);
+    }
+
+    public void deletarBebida(Long id) {
+        bebidasRepository.deleteById(id);
+    }
+
+
+
 
 }

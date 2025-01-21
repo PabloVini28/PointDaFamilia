@@ -15,8 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -38,7 +40,24 @@ public class BebidasController {
        Page<BebidasDTO> bebidasDTO = bebidasService.buscarTodasAsBebidas(page);
        return ResponseEntity.ok(bebidasDTO);
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<BebidasDTO> buscarPorId(@PathVariable Long id) {
+        BebidasDTO dto = bebidasService.buscarPorId(id);
+        return ResponseEntity.ok(dto);
+    }
+
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<BebidasDTO> atualizarBebida(@PathVariable Long id, @RequestBody BebidasDTO bebidasDTO) {
+        BebidasDTO dto = bebidasService.atualizarBebidas(id, bebidasDTO);
+        return ResponseEntity.ok(dto);
+    }
     
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deletarBebida(@PathVariable Long id) {
+        bebidasService.deletarBebida(id);
+        return ResponseEntity.noContent().build();
+    }
     
 
 }
