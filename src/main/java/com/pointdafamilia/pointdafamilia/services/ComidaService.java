@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pointdafamilia.pointdafamilia.dtos.ComidaDto;
 import com.pointdafamilia.pointdafamilia.entities.Comida;
+import com.pointdafamilia.pointdafamilia.exceptions.ComidaAlreadyOnDatabankException;
 import com.pointdafamilia.pointdafamilia.exceptions.ComidaNotFoundException;
 import com.pointdafamilia.pointdafamilia.repository.ComidasRepository;
 
@@ -17,6 +18,9 @@ public class ComidaService {
     private ComidasRepository comidasRepository;
 
     public Comida createComida(ComidaDto novaComidaDto){
+        if(comidasRepository.existsByNome(novaComidaDto.nome())){
+            throw new ComidaAlreadyOnDatabankException(novaComidaDto.nome());
+        }
         Comida newComida = new Comida(novaComidaDto);
         return comidasRepository.save(newComida);
     }
