@@ -1,7 +1,7 @@
 package com.pointdafamilia.pointdafamilia.entities;
 
-import com.pointdafamilia.pointdafamilia.enums.Categoria;
-import com.pointdafamilia.pointdafamilia.enums.Tipo;
+import com.pointdafamilia.pointdafamilia.enums.BebidasCategoria;
+import com.pointdafamilia.pointdafamilia.enums.BebidasTipo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,10 +28,10 @@ public class Bebidas {
     private String nome;
 
     @Column (nullable = false) @Enumerated
-    private Tipo tipo;
+    private BebidasTipo tipo;
 
     @Column(nullable = false) @Enumerated
-    private Categoria categoria;
+    private BebidasCategoria categoria;
 
     @Column (nullable = false)
     private float preco;

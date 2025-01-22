@@ -1,6 +1,6 @@
 package com.pointdafamilia.pointdafamilia.enums;
 
-public enum Tipo {
+public enum BebidasTipo {
     REFRI,
     SUCO,
     ALCOOLICA
