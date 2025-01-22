@@ -2,7 +2,6 @@ package com.pointdafamilia.pointdafamilia.DTOS;
 
 import com.pointdafamilia.pointdafamilia.Entities.Categoria;
 import com.pointdafamilia.pointdafamilia.Entities.Tipo;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
