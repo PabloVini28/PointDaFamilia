@@ -19,7 +19,8 @@ public class BebidasDTO {
     @NonNull
     private BebidasTipo tipo;
 
-    private float preco;
+    @NonNull
+    private String preco;
 
     @NonNull
     private BebidasCategoria categoria;

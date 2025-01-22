@@ -34,7 +34,7 @@ public class Bebidas {
     private BebidasCategoria categoria;
 
     @Column (nullable = false)
-    private float preco;
+    private String preco;
 
     @Column (nullable = false)
     private String imagem;

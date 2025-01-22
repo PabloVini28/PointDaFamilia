@@ -21,7 +21,8 @@ public class BebidasDTOAdmin {
     @NonNull
     private BebidasTipo tipo;
 
-    private float preco;
+    @NonNull
+    private String preco;
 
     @NonNull
     private BebidasCategoria categoria;
