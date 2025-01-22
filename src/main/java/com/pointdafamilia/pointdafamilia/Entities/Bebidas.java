@@ -13,6 +13,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Data
@@ -24,7 +27,7 @@ public class Bebidas {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (nullable = false)
+    @Column (nullable = false) @Size(max = 50) @NotBlank
     private String nome;
 
     @Column (nullable = false) @Enumerated
@@ -33,13 +36,13 @@ public class Bebidas {
     @Column(nullable = false) @Enumerated
     private BebidasCategoria categoria;
 
-    @Column (nullable = false)
+    @Column (nullable = false) @NotBlank
     private String preco;
 
-    @Column (nullable = false)
+    @Column (nullable = false) @NotBlank
     private String imagem;
 
-    @Column (nullable = false)
+    @Column (nullable = false) @NotNull
     private int quantidade;
 
 
