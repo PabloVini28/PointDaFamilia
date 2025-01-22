@@ -1,5 +1,6 @@
 package com.pointdafamilia.pointdafamilia.entities;
 
+import com.pointdafamilia.pointdafamilia.dtos.ComidaDto;
 import com.pointdafamilia.pointdafamilia.enums.ComidasType;
 
 import jakarta.persistence.Entity;
@@ -35,4 +36,14 @@ public class Comida {
     private String imagem;
     @Enumerated(EnumType.STRING)
     private ComidasType tipo;
+
+    public Comida(ComidaDto comidaDto) {
+        this.nome = comidaDto.nome();
+        this.descricao = comidaDto.descricao();
+        this.ingredientes = comidaDto.ingredientes();
+        this.valor = comidaDto.valor();
+        this.imagem = comidaDto.imagem();
+        this.tipo = comidaDto.tipo();
+    }
+
 }
