@@ -1,13 +1,15 @@
-package com.pointdafamilia.pointdafamilia.Services;
+package com.pointdafamilia.pointdafamilia.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTO;
-import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTOAdmin;
-import com.pointdafamilia.pointdafamilia.Entities.Bebidas;
-import com.pointdafamilia.pointdafamilia.Repositories.BebidasRepository;
+
+import com.pointdafamilia.pointdafamilia.dtos.BebidasDTO;
+import com.pointdafamilia.pointdafamilia.dtos.BebidasDTOAdmin;
+import com.pointdafamilia.pointdafamilia.entities.Bebidas;
+import com.pointdafamilia.pointdafamilia.repositories.BebidasRepository;
+
 import lombok.RequiredArgsConstructor;
 
 @Service

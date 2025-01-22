@@ -1,4 +1,4 @@
-package com.pointdafamilia.pointdafamilia.Entities;
+package com.pointdafamilia.pointdafamilia.enums;
 
 public enum Tipo {
     REFRI,

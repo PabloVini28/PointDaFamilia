@@ -1,4 +1,4 @@
-package com.pointdafamilia.pointdafamilia.Configurations;
+package com.pointdafamilia.pointdafamilia.configurations;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

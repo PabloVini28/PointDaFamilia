@@ -1,11 +1,13 @@
-package com.pointdafamilia.pointdafamilia.Controllers;
+package com.pointdafamilia.pointdafamilia.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTO;
-import com.pointdafamilia.pointdafamilia.DTOS.BebidasDTOAdmin;
-import com.pointdafamilia.pointdafamilia.Services.BebidasService;
+
+import com.pointdafamilia.pointdafamilia.dtos.BebidasDTO;
+import com.pointdafamilia.pointdafamilia.dtos.BebidasDTOAdmin;
+import com.pointdafamilia.pointdafamilia.services.BebidasService;
+
 import lombok.RequiredArgsConstructor;
 import java.net.URI;
 import org.springframework.data.domain.Page;

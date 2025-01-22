@@ -1,4 +1,7 @@
-package com.pointdafamilia.pointdafamilia.Entities;
+package com.pointdafamilia.pointdafamilia.entities;
+
+import com.pointdafamilia.pointdafamilia.enums.Categoria;
+import com.pointdafamilia.pointdafamilia.enums.Tipo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
