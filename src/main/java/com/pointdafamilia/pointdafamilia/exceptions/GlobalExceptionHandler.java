@@ -14,7 +14,15 @@ import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    //TODO:COMIDA NOT FOUND EXCEPTION
+    @ExceptionHandler(ComidaNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleComidaNotFound(ComidaNotFoundException exc, HttpServletRequest request){
+        ErrorResponseDto response = new ErrorResponseDto(
+            exc.getMessage(),
+            HttpStatus.NOT_FOUND.value(),
+            request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponseDto> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException exc, HttpServletRequest request){
         String message = String.format("Invalid value for '%s': '%s'", exc.getName(), exc.getValue());
