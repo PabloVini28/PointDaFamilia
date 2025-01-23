@@ -14,6 +14,15 @@ import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(ComidaAlreadyRegisteredException.class)
+    public ResponseEntity<ErrorResponseDto> handleComidaAlreadyRegistered(ComidaAlreadyRegisteredException exc, HttpServletRequest request){
+        ErrorResponseDto response = new ErrorResponseDto(
+            exc.getMessage(),
+            HttpStatus.BAD_REQUEST.value(),
+            request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
     @ExceptionHandler(ComidaNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleComidaNotFound(ComidaNotFoundException exc, HttpServletRequest request){
         ErrorResponseDto response = new ErrorResponseDto(

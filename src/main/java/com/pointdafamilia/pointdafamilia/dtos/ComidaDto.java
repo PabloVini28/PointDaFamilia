@@ -1,5 +1,7 @@
 package com.pointdafamilia.pointdafamilia.dtos;
 
+import java.util.Vector;
+
 import com.pointdafamilia.pointdafamilia.entities.Comida;
 import com.pointdafamilia.pointdafamilia.enums.ComidasType;
 
@@ -9,9 +11,10 @@ import jakarta.persistence.Enumerated;
 public record ComidaDto(
     String nome,
     String descricao,
-    String ingredientes,
-    String valor,
+    Vector<String> ingredientes,
+    Float valor,
     String imagem,
+    Integer quantidade,
     @Enumerated(EnumType.STRING) ComidasType tipo
 ){
     public ComidaDto(Comida comida){
@@ -20,6 +23,7 @@ public record ComidaDto(
         comida.getIngredientes(),
         comida.getValor(),
         comida.getImagem(),
+        comida.getQuantidade(),
         comida.getTipo());
     }
 }
