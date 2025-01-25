@@ -9,7 +9,7 @@ import com.pointdafamilia.pointdafamilia.dtos.BebidasDTO;
 import com.pointdafamilia.pointdafamilia.dtos.BebidasDTOAdmin;
 import com.pointdafamilia.pointdafamilia.entities.Bebidas;
 import com.pointdafamilia.pointdafamilia.exceptions.BebidaAlreadyRegisteredException;
-import com.pointdafamilia.pointdafamilia.exceptions.BebidaNotFound;
+import com.pointdafamilia.pointdafamilia.exceptions.BebidaNotFoundException;
 import com.pointdafamilia.pointdafamilia.repositories.BebidasRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -38,12 +38,12 @@ public class BebidasService {
     }
 
     public BebidasDTO buscarPorId(Long id) {
-        Bebidas bebida = bebidasRepository.findById(id).orElseThrow(()-> new BebidaNotFound(id));
+        Bebidas bebida = bebidasRepository.findById(id).orElseThrow(()-> new BebidaNotFoundException(id));
         return modelMapper.map(bebida, BebidasDTO.class);
     }
 
     public BebidasDTO atualizarBebidas(Long id, BebidasDTO bebidasDTO) {
-        Bebidas bebida = bebidasRepository.findById(id).orElseThrow(()-> new BebidaNotFound(id));
+        Bebidas bebida = bebidasRepository.findById(id).orElseThrow(()-> new BebidaNotFoundException(id));
         bebida.setNome(bebidasDTO.getNome());
         bebida.setPreco(bebidasDTO.getPreco());
         bebida.setTipo(bebidasDTO.getTipo());
@@ -56,7 +56,7 @@ public class BebidasService {
 
     public void deletarBebida(Long id) {
         if (!bebidasRepository.existsById(id)) {
-            throw new BebidaNotFound(id);
+            throw new BebidaNotFoundException(id);
         }
         bebidasRepository.deleteById(id);
     }
