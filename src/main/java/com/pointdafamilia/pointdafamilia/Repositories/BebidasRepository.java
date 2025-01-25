@@ -6,5 +6,7 @@ import com.pointdafamilia.pointdafamilia.entities.Bebidas;
 
 
 public interface BebidasRepository extends JpaRepository<Bebidas,Long>{
+
+    boolean existsByNome(String nome);
     
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.pointdafamilia.pointdafamilia.dtos.BebidasDTO;
 import com.pointdafamilia.pointdafamilia.dtos.BebidasDTOAdmin;
 import com.pointdafamilia.pointdafamilia.entities.Bebidas;
+import com.pointdafamilia.pointdafamilia.exceptions.BebidaAlreadyRegisteredException;
 import com.pointdafamilia.pointdafamilia.exceptions.BebidaNotFound;
 import com.pointdafamilia.pointdafamilia.repositories.BebidasRepository;
 
@@ -21,6 +22,11 @@ public class BebidasService {
     private final ModelMapper modelMapper;
 
     public BebidasDTO criarBebida(BebidasDTO bebidasDTO) {
+
+        if(bebidasRepository.existsByNome(bebidasDTO.getNome())){
+            throw new BebidaAlreadyRegisteredException(bebidasDTO.getNome());
+        }
+
         Bebidas bebida = modelMapper.map(bebidasDTO, Bebidas.class);
         bebidasRepository.save(bebida);
 
