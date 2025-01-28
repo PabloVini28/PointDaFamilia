@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pointdafamilia.pointdafamilia.dtos.AuthenticationDto;
+import com.pointdafamilia.pointdafamilia.dtos.LoginResponseDto;
 import com.pointdafamilia.pointdafamilia.dtos.RegisterDto;
 import com.pointdafamilia.pointdafamilia.entities.User;
 import com.pointdafamilia.pointdafamilia.repository.UserRepository;
+import com.pointdafamilia.pointdafamilia.services.TokenService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,17 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TokenService tokenService;
     
     @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);   
-        return ResponseEntity.ok().build();
+
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDto(token));
     }
 
     @SuppressWarnings("rawtypes")
