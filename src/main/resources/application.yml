@@ -1,13 +1,16 @@
 spring:
-    datasource:
-            url: jdbc:postgresql://localhost:5432/pointdafamilia
-            username: postgres
-            password: 28112003
-            driver-class-name: org.postgresql.Driver
-    jpa:
-        hibernate:
-            ddl-auto: update
-        show-sql: true
-        open-in-view: false
-        
-        
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pointdafamilia
+    username: postgres
+    password: 28112003
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
