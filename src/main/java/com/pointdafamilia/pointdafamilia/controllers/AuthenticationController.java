@@ -7,6 +7,7 @@ import com.pointdafamilia.pointdafamilia.dtos.AuthenticationDto;
 import com.pointdafamilia.pointdafamilia.dtos.LoginResponseDto;
 import com.pointdafamilia.pointdafamilia.dtos.RegisterDto;
 import com.pointdafamilia.pointdafamilia.entities.User;
+import com.pointdafamilia.pointdafamilia.enums.Role;
 import com.pointdafamilia.pointdafamilia.repository.UserRepository;
 import com.pointdafamilia.pointdafamilia.services.TokenService;
 
@@ -49,7 +50,7 @@ public class AuthenticationController {
         }
         else{
             String encryptedPassWord = new BCryptPasswordEncoder().encode(data.password());
-            User newUser = new User(data.login(),encryptedPassWord,data.role());
+            User newUser = new User(data.login(),encryptedPassWord,role);
             this.userRepository.save(newUser);
             return ResponseEntity.ok().build();
         }
