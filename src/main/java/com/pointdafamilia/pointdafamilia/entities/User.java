@@ -20,12 +20,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "users")
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -42,6 +40,16 @@ public class User implements UserDetails{
 
     @NonNull @Enumerated
     private Role role;
+
+    public User(String login, String password, Role role) {
+
+        this.login = login;
+
+        this.password = password;
+
+        this.role = role;
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
