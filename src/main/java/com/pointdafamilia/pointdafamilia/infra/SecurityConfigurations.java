@@ -27,6 +27,7 @@ public class SecurityConfigurations {
             .requestMatchers(HttpMethod.POST, "/api/comidas").hasRole("ADMIN")
             .anyRequest().authenticated()
             )
+        .addFilterBefore(securityFilter, usernamePasswordAuthenticationFilter.class)
         .build();
     }
 
