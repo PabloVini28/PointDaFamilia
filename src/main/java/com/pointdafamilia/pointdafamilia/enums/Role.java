@@ -1,8 +1,8 @@
 package com.pointdafamilia.pointdafamilia.enums;
 
 public enum Role {
-    ADMIN("admin"),
-    USER("user");
+    ROLE_ADMIN("admin"),
+    ROLE_USER("user");
 
     private String role;
 
