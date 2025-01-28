@@ -27,6 +27,7 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
     
+    @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),data.password());
@@ -35,6 +36,7 @@ public class AuthenticationController {
         return ResponseEntity.ok().build();
     }
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
         if(this.userRepository.findByLogin(data.login())!= null){
