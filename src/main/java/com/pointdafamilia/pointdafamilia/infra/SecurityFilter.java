@@ -21,14 +21,12 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SecurityFilter extends OncePerRequestFilter{
 
     @Autowired
-    SecurityFilter securityFilter;
-
-    @Autowired
     TokenService tokenService;
 
     @Autowired
     UserRepository userRepository;
 
+    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException{
         var token = this.recoverToken(request);
