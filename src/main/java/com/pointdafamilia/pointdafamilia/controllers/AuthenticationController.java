@@ -7,7 +7,6 @@ import com.pointdafamilia.pointdafamilia.dtos.AuthenticationDto;
 import com.pointdafamilia.pointdafamilia.dtos.LoginResponseDto;
 import com.pointdafamilia.pointdafamilia.dtos.RegisterDto;
 import com.pointdafamilia.pointdafamilia.entities.User;
-import com.pointdafamilia.pointdafamilia.enums.Role;
 import com.pointdafamilia.pointdafamilia.repository.UserRepository;
 import com.pointdafamilia.pointdafamilia.services.TokenService;
 
