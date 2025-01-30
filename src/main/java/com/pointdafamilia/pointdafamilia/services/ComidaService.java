@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pointdafamilia.pointdafamilia.dtos.ComidaDto;
+import com.pointdafamilia.pointdafamilia.dtos.ComidaDtoAdmin;
 import com.pointdafamilia.pointdafamilia.entities.Comida;
 import com.pointdafamilia.pointdafamilia.exceptions.ComidaAlreadyRegisteredException;
 import com.pointdafamilia.pointdafamilia.exceptions.ComidaNotFoundException;
@@ -28,6 +29,11 @@ public class ComidaService {
     public List<ComidaDto> listAllComidas(){
         List<Comida> comidas = comidasRepository.findAll();
         return comidas.stream().map(comida -> new ComidaDto(comida)).collect(Collectors.toList());
+    }
+
+    public List<ComidaDtoAdmin> listAllComidasAdmin() {
+        List<Comida> comidas = comidasRepository.findAll();
+        return comidas.stream().map(comida -> new ComidaDtoAdmin(comida)).collect(Collectors.toList());
     }
 
     public ComidaDto updateComidaById(Long id, ComidaDto comidaDto){
