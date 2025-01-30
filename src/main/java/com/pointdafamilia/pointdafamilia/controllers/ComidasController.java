@@ -44,7 +44,7 @@ public class ComidasController {
         return ResponseEntity.ok(comida);
     }
 
-    @GetMapping("/delete-{id}")
+    @GetMapping("/list-{id}")
     public ResponseEntity<ComidaDto> getComidaById(@PathVariable @NotNull Long  id){
         ComidaDto comida = comidaService.getComidaById(id);
         return ResponseEntity.ok(comida);
