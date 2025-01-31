@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,8 +33,11 @@ public class User implements UserDetails{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NonNull @Email
     private String login;
+
+    @NonNull
+    private String username;
 
     @NonNull
     private String password;
@@ -41,9 +45,16 @@ public class User implements UserDetails{
     @NonNull @Enumerated
     private Role role;
 
-    public User(String login, String password, Role role) {
+    @NonNull
+    private String endereco;
 
-        this.login = login;
+
+
+    public User(String email, String username,String password, Role role) {
+
+        this.login = email;
+
+        this.username = username;
 
         this.password = password;
 
