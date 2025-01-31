@@ -46,13 +46,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
         if(this.userRepository.findByLogin(data.login())!= null){
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body("Usuário já existe!");
         }
         else{
             String encryptedPassWord = new BCryptPasswordEncoder().encode(data.password());
-            User newUser = new User(data.login(),data.username(),encryptedPassWord,Role.ROLE_USER,data.endereco());
+            User newUser = new User(data.login(),data.email(),encryptedPassWord,Role.ROLE_USER,data.endereco());
             this.userRepository.save(newUser);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok("Usuário cadastrado com sucesso!");
         }
         
     }

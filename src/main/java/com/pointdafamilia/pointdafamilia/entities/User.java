@@ -33,13 +33,13 @@ public class User implements UserDetails{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull @Email
+    @NonNull 
     private String login;
 
-    @NonNull
-    private String username;
+    @NonNull @Email
+    private String email;
 
-    @NonNull
+    @NonNull 
     private String password;
 
     @NonNull @Enumerated
@@ -50,11 +50,11 @@ public class User implements UserDetails{
 
 
 
-    public User(String email, String username,String password, Role role, String endereco) {
+    public User(String login, String email,String password, Role role, String endereco) {
 
-        this.login = email;
+        this.login = login;
 
-        this.username = username;
+        this.email = email;
 
         this.password = password;
 

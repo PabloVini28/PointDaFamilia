@@ -3,9 +3,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.pointdafamilia.pointdafamilia.entities.User;
+import com.pointdafamilia.pointdafamilia.enums.Role;
 
 public interface UserRepository extends JpaRepository<User,Long>{
     UserDetails findByLogin(String login);
 
-    UserDetails findByUsername(String username);
+    boolean existsByRole(Role roleAdmin);
 } 
