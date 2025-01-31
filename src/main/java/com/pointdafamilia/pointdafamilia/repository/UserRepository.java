@@ -6,7 +6,7 @@ import com.pointdafamilia.pointdafamilia.entities.User;
 import com.pointdafamilia.pointdafamilia.enums.Role;
 
 public interface UserRepository extends JpaRepository<User,Long>{
-    UserDetails findByLogin(String login);
+    UserDetails findByLoginOrEmail(String login, String email);
 
     boolean existsByRole(Role roleAdmin);
 } 

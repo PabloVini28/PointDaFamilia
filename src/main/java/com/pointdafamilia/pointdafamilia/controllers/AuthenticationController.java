@@ -35,6 +35,7 @@ public class AuthenticationController {
     @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
+
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(),data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);   
 
@@ -45,7 +46,7 @@ public class AuthenticationController {
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDto data) {
-        if(this.userRepository.findByLogin(data.login())!= null){
+        if(this.userRepository.findByLoginOrEmail(data.login(),data.email()) != null){
             return ResponseEntity.badRequest().body("Usuário já existe!");
         }
         else{
