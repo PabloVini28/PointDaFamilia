@@ -50,7 +50,7 @@ public class AuthenticationController {
         }
         else{
             String encryptedPassWord = new BCryptPasswordEncoder().encode(data.password());
-            User newUser = new User(data.login(),data.username(),encryptedPassWord,Role.ROLE_USER);
+            User newUser = new User(data.login(),data.username(),encryptedPassWord,Role.ROLE_USER,data.endereco());
             this.userRepository.save(newUser);
             return ResponseEntity.ok().build();
         }
