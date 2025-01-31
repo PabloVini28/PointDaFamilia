@@ -50,7 +50,7 @@ public class User implements UserDetails{
 
 
 
-    public User(String email, String username,String password, Role role) {
+    public User(String email, String username,String password, Role role, String endereco) {
 
         this.login = email;
 
@@ -59,6 +59,8 @@ public class User implements UserDetails{
         this.password = password;
 
         this.role = role;
+
+        this.endereco = endereco;
 
     }
 
