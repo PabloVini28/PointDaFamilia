@@ -31,24 +31,24 @@ public class Food {
     private Long id;
 
     @Size(max = 255) @NotBlank
-    private String nome;
+    private String name;
 
     @Size(max = 1000) @NotBlank
-    private String descricao;
+    private String description;
 
     @NotNull
-    private Map<String, String> ingredientes;
+    private Map<String, String> ingredients;
 
     @NotNull
-    private Integer quantidade;
+    private Integer quantity;
 
     @NotNull
-    private Float valor;
+    private Float price;
 
     @NotBlank
-    private String Urlimagem;
+    private String UrlImage;
 
     @Enumerated(EnumType.STRING)
-    private FoodType tipo;
+    private FoodType type;
     
 }
