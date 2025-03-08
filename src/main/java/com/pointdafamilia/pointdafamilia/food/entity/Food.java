@@ -2,6 +2,7 @@ package com.pointdafamilia.pointdafamilia.food.entity;
 
 import java.util.Map;
 
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
 import com.pointdafamilia.pointdafamilia.food.enums.FoodType;
 
 import jakarta.persistence.Entity;
@@ -50,5 +51,15 @@ public class Food {
 
     @Enumerated(EnumType.STRING)
     private FoodType type;
+
+    public Food(FoodDto data) {
+        this.name = data.name();
+        this.description = data.description();
+        this.ingredients = data.ingredients();
+        this.quantity = data.quantity();
+        this.price = data.price();
+        this.UrlImage = data.urlImage();
+        this.type = data.type();
+    }
     
 }
