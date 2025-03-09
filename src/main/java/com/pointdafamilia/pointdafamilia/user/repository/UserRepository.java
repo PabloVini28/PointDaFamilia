@@ -7,9 +7,16 @@ import com.pointdafamilia.pointdafamilia.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User,Long>{
 
-    UserDto findItById(Long id);
-    UserDto findByUsername(String username);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
-    UserDto findByEmail();
+    boolean existsByName(String name);
+    boolean existsByImageUrl(String image);
+
+    User findByUsername(String username);
+    User findByEmail();
+    User findByName(String name);
+    User findByImageUrl(String image);
+
+    UserDto findItById(Long id);
+    
 }

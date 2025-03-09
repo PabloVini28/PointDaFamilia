@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/drink")
+@RequestMapping("/api/drink")
 @RequiredArgsConstructor
 public class DrinkController {
     

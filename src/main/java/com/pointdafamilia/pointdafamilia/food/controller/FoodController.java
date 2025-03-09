@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/food")
+@RequestMapping("/api/food")
 public class FoodController {
     
     @Autowired
