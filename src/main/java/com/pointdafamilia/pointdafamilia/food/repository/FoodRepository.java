@@ -6,5 +6,7 @@ import com.pointdafamilia.pointdafamilia.food.entity.Food;
 public interface FoodRepository extends JpaRepository<Food,Long>{
 
     boolean existsByName(String name);
+
+    Food findItById(Long id);
         
 }
