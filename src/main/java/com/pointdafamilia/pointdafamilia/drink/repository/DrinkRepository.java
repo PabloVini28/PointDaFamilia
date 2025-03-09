@@ -9,5 +9,7 @@ public interface DrinkRepository extends JpaRepository<Drink,Long>{
     boolean existByName();
 
     Drink findItById(Long id);
+
+    Drink findByName(String name);
     
 }
