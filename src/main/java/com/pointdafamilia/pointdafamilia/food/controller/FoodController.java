@@ -7,6 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchImage;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchIngredients;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchName;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchPrice;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchQuantity;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchType;
 import com.pointdafamilia.pointdafamilia.food.entity.Food;
 import com.pointdafamilia.pointdafamilia.food.service.FoodService;
 import jakarta.validation.Valid;
@@ -15,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -53,6 +60,57 @@ public class FoodController {
     public ResponseEntity<Void> deleteFoodById(@PathVariable Long id) throws Exception {
         foodService.deleteFood(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{name}/name")
+    public ResponseEntity<FoodDto> updateFoodName(@RequestBody FoodPatchName foodPatchName, @PathVariable String name) throws Exception{
+        FoodDto food = foodService.updateName(foodPatchName, name);
+        return ResponseEntity.ok().body(food);
+    }
+
+    @PatchMapping("/{name}/ingredients")
+    public ResponseEntity<FoodDto> updateFoodIngredients(
+            @RequestBody FoodPatchIngredients foodPatchIngredients, 
+            @PathVariable String name) throws Exception {
+        
+        FoodDto food = foodService.updateIngredients(foodPatchIngredients, name);
+        return ResponseEntity.ok().body(food);
+    }
+
+    @PatchMapping("/{name}/quantity")
+    public ResponseEntity<FoodDto> updateFoodQuantity(
+            @RequestBody FoodPatchQuantity foodPatchQuantity, 
+            @PathVariable String name) throws Exception {
+        
+        FoodDto food = foodService.updateQuantity(foodPatchQuantity, name);
+        return ResponseEntity.ok().body(food);
+    }
+
+    @PatchMapping("/{name}/price")
+    public ResponseEntity<FoodDto> updateFoodPrice(
+            @RequestBody FoodPatchPrice foodPatchPrice, 
+            @PathVariable String name) throws Exception {
+        
+        FoodDto food = foodService.updatePrice(foodPatchPrice, name);
+        return ResponseEntity.ok().body(food);
+    }
+
+    @PatchMapping("/{name}/image")
+    public ResponseEntity<FoodDto> updateFoodImage(
+            @RequestBody FoodPatchImage foodPatchImage, 
+            @PathVariable String name) throws Exception {
+        
+        FoodDto food = foodService.updateImage(foodPatchImage, name);
+        return ResponseEntity.ok().body(food);
+    }
+
+    @PatchMapping("/{name}/type")
+    public ResponseEntity<FoodDto> updateFoodType(
+            @RequestBody FoodPatchType foodPatchType, 
+            @PathVariable String name) throws Exception {
+        
+        FoodDto food = foodService.updateFoodType(foodPatchType, name);
+        return ResponseEntity.ok().body(food);
     }
 
 }

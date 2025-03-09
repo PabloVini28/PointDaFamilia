@@ -83,7 +83,7 @@ public class UserService {
         userRepository.save(updatedName);
         return modelMapper.map(updatedName, UserDto.class);
     }
-
+    
     public UserDto updateUsername(UserPatchUsername userPatchUsername, String username) throws Exception{
         if(!userRepository.existsByUsername(username)){
             throw new UserNameNotFoundException(username);

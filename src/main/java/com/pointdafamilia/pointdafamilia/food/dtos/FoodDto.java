@@ -13,7 +13,7 @@ public record FoodDto(
     String description,
     Map<String, String> ingredients,
     Integer quantity,
-    Float price,
+    String price,
     String urlImage,
     @Enumerated(EnumType.STRING)FoodType type
 ) {

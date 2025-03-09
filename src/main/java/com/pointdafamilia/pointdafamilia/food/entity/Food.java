@@ -44,7 +44,7 @@ public class Food {
     private Integer quantity;
 
     @NotNull
-    private Float price;
+    private String price;
 
     @NotBlank
     private String urlImage;
