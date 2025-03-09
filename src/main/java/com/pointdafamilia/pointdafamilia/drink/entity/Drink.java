@@ -1,10 +1,8 @@
-package com.pointdafamilia.pointdafamilia.food.entity;
+package com.pointdafamilia.pointdafamilia.drink.entity;
 
-import java.util.Map;
-
-import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
-import com.pointdafamilia.pointdafamilia.food.enums.FoodType;
-
+import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkDto;
+import com.pointdafamilia.pointdafamilia.drink.enums.DrinkType;
+import com.pointdafamilia.pointdafamilia.drink.enums.VolumeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,13 +18,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "food")
+@Table(name = "drink")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Food {
+public class Drink {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,32 +32,29 @@ public class Food {
     @Size(max = 255) @NotBlank
     private String name;
 
-    @Size(max = 1000) @NotBlank
-    private String description;
+    @Enumerated(EnumType.STRING) 
+    private VolumeType volumeType;
+
+    @Enumerated(EnumType.STRING)
+    private DrinkType drinkType;
 
     @NotNull
-    private Map<String, String> ingredients;
+    private String price;
 
     @NotNull
     private Integer quantity;
 
-    @NotNull
-    private Float price;
-
     @NotBlank
     private String urlImage;
 
-    @Enumerated(EnumType.STRING)
-    private FoodType type;
-
-    public Food(FoodDto data) {
+    public Drink(DrinkDto data) {
         this.name = data.name();
-        this.description = data.description();
-        this.ingredients = data.ingredients();
-        this.quantity = data.quantity();
+        this.volumeType = data.volumeType();
+        this.drinkType = data.drinkType();
         this.price = data.price();
+        this.quantity = data.quantity();
         this.urlImage = data.urlImage();
-        this.type = data.type();
     }
-    
+
+
 }

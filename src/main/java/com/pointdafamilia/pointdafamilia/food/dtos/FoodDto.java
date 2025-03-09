@@ -9,7 +9,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 public record FoodDto(
-    Long id,
     String name,
     String description,
     Map<String, String> ingredients,
@@ -19,8 +18,7 @@ public record FoodDto(
     @Enumerated(EnumType.STRING)FoodType type
 ) {
     public FoodDto(Food food){
-        this(food.getId(),
-            food.getName(), 
+        this(food.getName(), 
             food.getDescription(), 
             food.getIngredients(), 
             food.getQuantity(), 

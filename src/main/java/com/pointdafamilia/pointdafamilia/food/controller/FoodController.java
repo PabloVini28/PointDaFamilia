@@ -43,13 +43,13 @@ public class FoodController {
         return ResponseEntity.ok(food);
     }
     
-    @PutMapping("update-by-id/{id}")
+    @PutMapping("update-food-by-id/{id}")
     public ResponseEntity<FoodDto> updateFoodById(@PathVariable Long id, @RequestBody @Valid FoodDto data) throws Exception {
         FoodDto updatedFood = foodService.updateFood(id, data);
         return ResponseEntity.ok(updatedFood);
     }
     
-    @DeleteMapping("delete-by-id/{id}")
+    @DeleteMapping("delete-food-by-id/{id}")
     public ResponseEntity<Void> deleteFoodById(@PathVariable Long id) throws Exception {
         foodService.deleteFood(id);
         return ResponseEntity.noContent().build();
