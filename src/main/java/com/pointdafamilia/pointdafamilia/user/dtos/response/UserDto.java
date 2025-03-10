@@ -8,6 +8,7 @@ public record UserDto(
     String username,
     String email,
     String imageUrl,
+    String address,
     RoleType roleType
 ) {
    UserDto(User user){
@@ -15,6 +16,7 @@ public record UserDto(
             user.getUsername(),
             user.getEmail(),
             user.getImageUrl(),
+            user.getAddress(),
             user.getRoleType()
             );
    }

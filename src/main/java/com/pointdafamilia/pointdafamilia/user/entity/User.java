@@ -50,6 +50,9 @@ public class User {
 
     private String imageUrl;
 
+    @NotBlank @Size(max = 35)
+    private String address;
+
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
@@ -57,7 +60,7 @@ public class User {
     public String toString(){
         return "User with id: " + id + " name: " + name + " username: " + username
         + " email: " + email + " password: " + password + " imageUrl: " + imageUrl
-        + " Role: " + roleType;
+        + " address: "+ address + " Role: " + roleType;
     }
 
 }

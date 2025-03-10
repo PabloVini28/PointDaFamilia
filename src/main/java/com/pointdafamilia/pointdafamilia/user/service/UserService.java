@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchAddress;
 import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchImage;
 import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchName;
 import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchUsername;
@@ -98,6 +99,17 @@ public class UserService {
         updatedUsername.setUsername(userPatchUsername.username());
         userRepository.save(updatedUsername);
         return modelMapper.map(updatedUsername, UserDto.class);
+    }
+
+    public UserDto updateAddress(UserPatchAddress userPatchAddress, String username) throws Exception{
+        if(!userRepository.existsByUsername(username)){
+            throw new UserNameNotFoundException(username);
+        }
+
+        User updatedAddress = userRepository.findByUsername(username);
+        updatedAddress.setAddress(userPatchAddress.address());
+        userRepository.save(updatedAddress);
+        return modelMapper.map(updatedAddress, UserDto.class);
     }
 
 }

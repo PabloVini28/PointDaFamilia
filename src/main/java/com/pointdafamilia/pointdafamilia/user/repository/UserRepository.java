@@ -18,5 +18,6 @@ public interface UserRepository extends JpaRepository<User,Long>{
     User findByImageUrl(String image);
 
     UserDto findItById(Long id);
+    boolean existsByAddress(String address);
     
 }
