@@ -2,14 +2,11 @@ package com.pointdafamilia.pointdafamilia.auth.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.pointdafamilia.pointdafamilia.auth.dtos.request.LoginDto;
 import com.pointdafamilia.pointdafamilia.auth.dtos.request.RegisterDto;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 import com.pointdafamilia.pointdafamilia.user.repository.UserRepository;
-
 import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
