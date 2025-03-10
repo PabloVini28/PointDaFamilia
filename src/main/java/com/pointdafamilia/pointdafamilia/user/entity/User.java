@@ -1,7 +1,11 @@
 package com.pointdafamilia.pointdafamilia.user.entity;
 
+import com.pointdafamilia.pointdafamilia.user.enums.RoleType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -46,10 +50,14 @@ public class User {
 
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
     @Override
     public String toString(){
         return "User with id: " + id + " name: " + name + " username: " + username
-        + " email: " + email + " password: " + password + " imageUrl: " + imageUrl;
+        + " email: " + email + " password: " + password + " imageUrl: " + imageUrl
+        + " Role: " + roleType;
     }
 
 }

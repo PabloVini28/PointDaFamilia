@@ -3,10 +3,11 @@ package com.pointdafamilia.pointdafamilia.user.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserDto;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchImage;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchName;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchUsername;
+
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchImage;
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchName;
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchUsername;
+import com.pointdafamilia.pointdafamilia.user.dtos.response.UserDto;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 import com.pointdafamilia.pointdafamilia.user.exceptions.UserNameNotFoundException;
 import com.pointdafamilia.pointdafamilia.user.exceptions.UsernamePatchAlreadyExists;

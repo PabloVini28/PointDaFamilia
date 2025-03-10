@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserDto;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchImage;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchName;
-import com.pointdafamilia.pointdafamilia.user.dtos.UserPatchUsername;
+
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchImage;
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchName;
+import com.pointdafamilia.pointdafamilia.user.dtos.request.UserPatchUsername;
+import com.pointdafamilia.pointdafamilia.user.dtos.response.UserDto;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 import com.pointdafamilia.pointdafamilia.user.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;

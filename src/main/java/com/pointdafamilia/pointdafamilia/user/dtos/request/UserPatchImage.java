@@ -1,4 +1,4 @@
-package com.pointdafamilia.pointdafamilia.user.dtos;
+package com.pointdafamilia.pointdafamilia.user.dtos.request;
 
 public record UserPatchImage(
     String imageTempPath
