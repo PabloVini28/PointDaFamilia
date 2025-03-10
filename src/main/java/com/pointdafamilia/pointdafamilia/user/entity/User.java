@@ -57,13 +57,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    public User(RegisterDto data, String password){
+    public User(RegisterDto data, String password, RoleType roleType){
         this.name = data.name();
         this.username = data.username();
         this.email = data.email();
         this.password = password;
         this.address = data.address();
-        this.roleType = data.roleType();
+        this.roleType = roleType;
     }
 
     @Override

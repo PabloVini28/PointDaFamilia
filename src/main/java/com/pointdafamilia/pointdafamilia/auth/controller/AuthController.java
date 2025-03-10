@@ -8,6 +8,7 @@ import com.pointdafamilia.pointdafamilia.auth.dtos.response.LoginResponseDto;
 import com.pointdafamilia.pointdafamilia.auth.entity.UserDetailsImp;
 import com.pointdafamilia.pointdafamilia.auth.service.JWTService;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
+import com.pointdafamilia.pointdafamilia.user.enums.RoleType;
 import com.pointdafamilia.pointdafamilia.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class AuthController {
         if(this.userRepository.findByUsername(data.username()) != null) return ResponseEntity.badRequest().body("Username already registered!");
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User user = new User(data,encryptedPassword);
+        User user = new User(data,encryptedPassword,RoleType.ROLE_COMMON);
         user = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
