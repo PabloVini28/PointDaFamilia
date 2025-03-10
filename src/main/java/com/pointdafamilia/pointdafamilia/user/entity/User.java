@@ -1,5 +1,6 @@
 package com.pointdafamilia.pointdafamilia.user.entity;
 
+import com.pointdafamilia.pointdafamilia.auth.dtos.request.RegisterDto;
 import com.pointdafamilia.pointdafamilia.user.enums.RoleType;
 
 import jakarta.persistence.Column;
@@ -55,6 +56,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
+
+    public User(RegisterDto data, String password){
+        this.name = data.name();
+        this.username = data.username();
+        this.email = data.email();
+        this.password = password;
+        this.address = data.address();
+        this.roleType = data.roleType();
+    }
 
     @Override
     public String toString(){
