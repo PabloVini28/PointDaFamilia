@@ -2,11 +2,8 @@ package com.pointdafamilia.pointdafamilia.drink.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkDto;
 import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchImage;
 import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchName;
@@ -19,7 +16,7 @@ import com.pointdafamilia.pointdafamilia.drink.exceptions.DrinkAlreadyRegisterEx
 import com.pointdafamilia.pointdafamilia.drink.exceptions.DrinkNameNotFoundException;
 import com.pointdafamilia.pointdafamilia.drink.exceptions.DrinkNotFoundException;
 import com.pointdafamilia.pointdafamilia.drink.repository.DrinkRepository;
-
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -29,11 +26,8 @@ public class DrinkService {
     @Autowired
     private DrinkRepository drinkRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     public Drink createDrink(DrinkDto data) throws Exception{
-        if(drinkRepository.existByName()){
+        if(drinkRepository.existsByName(data.name())){
             throw new DrinkAlreadyRegisterException(data.name());
         }
         Drink newDrink = new Drink(data);
@@ -71,58 +65,71 @@ public class DrinkService {
         drinkRepository.deleteById(id);
     }
 
+    @Transactional
     public DrinkDto updateName(DrinkPatchName drinkPatchName, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
-        drink.setName(drinkPatchName.name());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink.setName(drinkPatchName.name()); 
+        drink = drinkRepository.save(drink);  
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
     public DrinkDto updateVolume(DrinkPatchVolume drinkPatchVolume, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
         drink.setVolumeType(drinkPatchVolume.volumeType());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink = drinkRepository.save(drink);
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
     public DrinkDto updateDrinkType(DrinkPatchType drinkPatchType, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
         drink.setDrinkType(drinkPatchType.drinkType());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink = drinkRepository.save(drink);
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
     public DrinkDto updatePrice(DrinkPatchPrice drinkPatchPrice, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
         drink.setPrice(drinkPatchPrice.price());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink = drinkRepository.save(drink);
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
     public DrinkDto updateQuantity(DrinkPatchQuantity drinkPatchQuantity, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
         drink.setQuantity(drinkPatchQuantity.quantity());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink = drinkRepository.save(drink);
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
     public DrinkDto updateUrlImage(DrinkPatchImage drinkPatchImage, String name) throws Exception{
-        if(!drinkRepository.existByName()){
+        if(!drinkRepository.existsByName(name)){
             throw new DrinkNameNotFoundException(name);
         }
         Drink drink = drinkRepository.findByName(name);
         drink.setUrlImage(drinkPatchImage.imagePath());
-        return modelMapper.map(drink, DrinkDto.class);
+        drink = drinkRepository.save(drink);
+        return new DrinkDto(drink.getName(), drink.getPrice(), drink.getQuantity(), drink.getUrlImage()
+        ,drink.getVolumeType(),drink.getDrinkType());
     }
 
 }

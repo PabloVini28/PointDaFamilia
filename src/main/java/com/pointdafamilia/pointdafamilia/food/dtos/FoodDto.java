@@ -1,17 +1,15 @@
 package com.pointdafamilia.pointdafamilia.food.dtos;
 
-import java.util.Map;
-
+import java.util.List;
 import com.pointdafamilia.pointdafamilia.food.entity.Food;
 import com.pointdafamilia.pointdafamilia.food.enums.FoodType;
-
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 public record FoodDto(
     String name,
     String description,
-    Map<String, String> ingredients,
+    List<String> ingredients,
     Integer quantity,
     String price,
     String urlImage,

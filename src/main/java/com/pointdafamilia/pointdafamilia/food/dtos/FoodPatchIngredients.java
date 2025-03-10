@@ -1,8 +1,8 @@
 package com.pointdafamilia.pointdafamilia.food.dtos;
 
-import java.util.Map;
+import java.util.List;
 
 public record FoodPatchIngredients(
-    Map<String,String> ingredients
+    List<String> ingredients
 ) {
 } 

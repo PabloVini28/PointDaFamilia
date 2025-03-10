@@ -13,6 +13,7 @@ public record DrinkDto(
     VolumeType volumeType,
     DrinkType drinkType
 ) {
+
     public DrinkDto(Drink drink){
         this(drink.getName(),
             drink.getPrice(),

@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User,Long>{
     boolean existsByImageUrl(String image);
 
     User findByUsername(String username);
-    User findByEmail();
+    User findByEmail(String email);
     User findByName(String name);
     User findByImageUrl(String image);
 

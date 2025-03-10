@@ -6,10 +6,8 @@ import com.pointdafamilia.pointdafamilia.drink.entity.Drink;
 
 public interface DrinkRepository extends JpaRepository<Drink,Long>{
 
-    boolean existByName();
-
+    boolean existsByName(String name);
     Drink findItById(Long id);
-
     Drink findByName(String name);
     
 }

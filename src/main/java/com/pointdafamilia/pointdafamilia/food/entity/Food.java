@@ -1,10 +1,8 @@
 package com.pointdafamilia.pointdafamilia.food.entity;
 
-import java.util.Map;
-
+import java.util.List;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
 import com.pointdafamilia.pointdafamilia.food.enums.FoodType;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -38,7 +36,7 @@ public class Food {
     private String description;
 
     @NotNull
-    private Map<String, String> ingredients;
+    private List<String> ingredients;
 
     @NotNull
     private Integer quantity;

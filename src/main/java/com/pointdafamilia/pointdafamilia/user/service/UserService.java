@@ -50,7 +50,7 @@ public class UserService {
         if(!userRepository.existsByEmail(email)){
             throw new UserEmailNotFoundException(email);
         }
-        User user = userRepository.findByEmail();
+        User user = userRepository.findByEmail(email);
         return user;
     }
 

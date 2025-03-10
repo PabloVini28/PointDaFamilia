@@ -60,7 +60,7 @@ public class DrinkController {
     }
 
     @DeleteMapping("/delete-drink-by-id/{id}")
-    public ResponseEntity<Void> deleteDrinkById(Long id) throws Exception{
+    public ResponseEntity<Void> deleteDrinkById(@PathVariable Long id) throws Exception{
         drinkService.deleteDrink(id);
         return ResponseEntity.noContent().build();
     }
