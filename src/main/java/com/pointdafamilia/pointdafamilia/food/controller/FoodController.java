@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
+import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchDescription;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchImage;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchIngredients;
 import com.pointdafamilia.pointdafamilia.food.dtos.FoodPatchName;
@@ -45,18 +46,18 @@ public class FoodController {
     }
 
     @GetMapping("/get-food-by-id/{id}")
-    public ResponseEntity<Food> getFoodById(@PathVariable @Valid Long id) throws Exception {
+    public ResponseEntity<Food> getFoodById(@PathVariable Long id) throws Exception {
         Food food = foodService.getFoodById(id);
         return ResponseEntity.ok(food);
     }
     
-    @PutMapping("update-food-by-id/{id}")
+    @PutMapping("/update-food-by-id/{id}")
     public ResponseEntity<FoodDto> updateFoodById(@PathVariable Long id, @RequestBody @Valid FoodDto data) throws Exception {
         FoodDto updatedFood = foodService.updateFood(id, data);
         return ResponseEntity.ok(updatedFood);
     }
     
-    @DeleteMapping("delete-food-by-id/{id}")
+    @DeleteMapping("/delete-food-by-id/{id}")
     public ResponseEntity<Void> deleteFoodById(@PathVariable Long id) throws Exception {
         foodService.deleteFood(id);
         return ResponseEntity.noContent().build();
@@ -67,6 +68,13 @@ public class FoodController {
         FoodDto food = foodService.updateName(foodPatchName, name);
         return ResponseEntity.ok().body(food);
     }
+
+    @PatchMapping("/{name}/description")
+    public ResponseEntity<FoodDto> updateDescription(@RequestBody FoodPatchDescription foodPatchDescription, @PathVariable String name) throws Exception{
+        FoodDto food = foodService.updateDescription(foodPatchDescription, name);
+        return ResponseEntity.ok().body(food);
+    }
+
 
     @PatchMapping("/{name}/ingredients")
     public ResponseEntity<FoodDto> updateFoodIngredients(
