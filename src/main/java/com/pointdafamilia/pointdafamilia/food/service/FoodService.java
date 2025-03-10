@@ -54,8 +54,7 @@ public class FoodService {
             throw new FoodNotFoundException(id);
         }
         
-        Food updatedFood = foodRepository.findItById(id);
-        updatedFood = new Food(data);
+        Food updatedFood = new Food(data);
         updatedFood.setId(id);
         foodRepository.save(updatedFood);
         return data;
