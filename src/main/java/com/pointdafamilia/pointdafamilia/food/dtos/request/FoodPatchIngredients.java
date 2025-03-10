@@ -1,4 +1,4 @@
-package com.pointdafamilia.pointdafamilia.food.dtos;
+package com.pointdafamilia.pointdafamilia.food.dtos.request;
 
 import java.util.List;
 

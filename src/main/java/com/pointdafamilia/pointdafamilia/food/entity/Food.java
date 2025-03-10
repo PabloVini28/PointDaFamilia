@@ -1,7 +1,8 @@
 package com.pointdafamilia.pointdafamilia.food.entity;
 
 import java.util.List;
-import com.pointdafamilia.pointdafamilia.food.dtos.FoodDto;
+
+import com.pointdafamilia.pointdafamilia.food.dtos.response.FoodDto;
 import com.pointdafamilia.pointdafamilia.food.enums.FoodType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

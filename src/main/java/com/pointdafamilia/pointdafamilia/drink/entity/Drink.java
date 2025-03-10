@@ -1,6 +1,6 @@
 package com.pointdafamilia.pointdafamilia.drink.entity;
 
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkDto;
+import com.pointdafamilia.pointdafamilia.drink.dtos.response.DrinkDto;
 import com.pointdafamilia.pointdafamilia.drink.enums.DrinkType;
 import com.pointdafamilia.pointdafamilia.drink.enums.VolumeType;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.pointdafamilia.pointdafamilia.drink.dtos;
+package com.pointdafamilia.pointdafamilia.drink.dtos.request;
 
 import com.pointdafamilia.pointdafamilia.drink.enums.DrinkType;
 

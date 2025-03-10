@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkDto;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchImage;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchName;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchPrice;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchQuantity;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchType;
-import com.pointdafamilia.pointdafamilia.drink.dtos.DrinkPatchVolume;
+
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchImage;
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchName;
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchPrice;
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchQuantity;
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchType;
+import com.pointdafamilia.pointdafamilia.drink.dtos.request.DrinkPatchVolume;
+import com.pointdafamilia.pointdafamilia.drink.dtos.response.DrinkDto;
 import com.pointdafamilia.pointdafamilia.drink.entity.Drink;
 import com.pointdafamilia.pointdafamilia.drink.exceptions.DrinkAlreadyRegisterException;
 import com.pointdafamilia.pointdafamilia.drink.exceptions.DrinkNameNotFoundException;
@@ -51,8 +52,7 @@ public class DrinkService {
         if(!drinkRepository.existsById(id)){
             throw new DrinkNotFoundException(id);
         }
-        Drink updatedDrink = drinkRepository.findItById(id);
-        updatedDrink = new Drink(data);
+        Drink updatedDrink = new Drink(data);
         updatedDrink.setId(id);
         drinkRepository.save(updatedDrink);
         return data;
