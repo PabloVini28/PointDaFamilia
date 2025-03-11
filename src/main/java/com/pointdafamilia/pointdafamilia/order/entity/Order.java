@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.pointdafamilia.pointdafamilia.order.dtos.response.OrderDto;
 import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 
@@ -54,6 +55,14 @@ public class Order {
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+    }
+
+    public Order(OrderDto data) {
+        this.user = data.user();
+        this.orderItems = data.orderItems();
+        this.orderStatus = data.orderStatus();
+        this.createdAt = data.createdAt();
+        this.totalAmount = data.totalAmount();
     }
 
 }

@@ -10,6 +10,7 @@ import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 
 public record OrderDto(
+
     User user,
     List<OrderItem> orderItems,
     OrderStatus orderStatus,
