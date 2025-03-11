@@ -29,7 +29,8 @@ public class SecurityConfigurations {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-        //.requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+        .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+        .requestMatchers(HttpMethod.POST, "/api/order/create-order").permitAll()
         .requestMatchers(HttpMethod.POST, "/api/food/create-food").hasRole("ADMIN")
         .requestMatchers(HttpMethod.GET, "/api/food/get-food-by-id").hasRole("ADMIN")
         .requestMatchers(HttpMethod.PUT, "/api/food/update-food-by-id").hasRole("ADMIN")

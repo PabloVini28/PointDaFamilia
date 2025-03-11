@@ -49,7 +49,7 @@ public class Order {
     public Order(OrderDto data, User user, List<OrderItem> orderItems) {
         this.user = user;
         this.orderItems = orderItems;
-        this.orderStatus = data.orderStatus();
+        this.orderStatus = OrderStatus.PENDENTE;
         this.createdAt = LocalDateTime.now(); 
         this.totalAmount = calculateTotalAmount(orderItems);
     }

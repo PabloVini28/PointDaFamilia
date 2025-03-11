@@ -60,7 +60,7 @@ public class AuthController {
         if(this.userRepository.findByUsername(data.username()) != null) return ResponseEntity.badRequest().body("Username already registered!");
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User user = new User(data,encryptedPassword,RoleType.ROLE_COMMON);
+        User user = new User(data,encryptedPassword,RoleType.ROLE_ADMIN);
         user = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }

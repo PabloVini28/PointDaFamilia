@@ -2,52 +2,48 @@ package com.pointdafamilia.pointdafamilia.order.service;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.pointdafamilia.pointdafamilia.order.dtos.response.OrderDto;
 import com.pointdafamilia.pointdafamilia.order.entity.Order;
-import com.pointdafamilia.pointdafamilia.order.entity.OrderItem;
 import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.order.repository.OrderRepository;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 import com.pointdafamilia.pointdafamilia.user.repository.UserRepository;
-
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+
 
 @Service
-@RequiredArgsConstructor
 public class OrderService {
     
-    private final OrderRepository orderRepository;
-    private final UserRepository userRepository;
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Transactional
-    public Order createOrder(Long userId, List<OrderItem> orderItems) {
-        User user = userRepository.findById(userId)
+    public Order createOrder(OrderDto data) {
+        User user = userRepository.findById(data.userId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
-        if (orderItems.isEmpty()) {
+        if (data.orderItems().isEmpty()) {
             throw new IllegalArgumentException("The order must have at least one item!");
-        }
+        } 
 
         Order order = new Order();
         order.setUser(user);
         order.setOrderStatus(OrderStatus.PENDENTE);
 
-        orderItems.forEach(item -> item.setOrder(order));
-        order.setOrderItems(orderItems);
+        data.orderItems().forEach(item -> item.setOrder(order));
+        
+        order.setOrderItems(data.orderItems());
 
-        BigDecimal totalAmount = orderItems.stream()
-        .map(item -> {
-            String priceStr = item.getFood() != null ? item.getFood().getPrice() : item.getDrink().getPrice();
-            return new BigDecimal(priceStr); // Converte String para BigDecimal
-        })
-        .reduce(BigDecimal.ZERO, BigDecimal::add);
-    
+        BigDecimal valor = new BigDecimal(10);
 
-        order.setTotalAmount(totalAmount);
+        order.setTotalAmount(valor);
 
         return orderRepository.save(order);
     }
@@ -66,5 +62,10 @@ public class OrderService {
         Order order = getOrderById(orderId);
         order.setOrderStatus(newStatus);
         return orderRepository.save(order);
+    }
+
+    public List<OrderDto> getAllOrders(){
+        List<Order> orderList = orderRepository.findAll();
+        return orderList.stream().map(order -> new OrderDto(order)).collect(Collectors.toList());
     }
 }

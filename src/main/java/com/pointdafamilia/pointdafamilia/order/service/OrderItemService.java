@@ -3,6 +3,7 @@ package com.pointdafamilia.pointdafamilia.order.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,22 +16,26 @@ import com.pointdafamilia.pointdafamilia.order.entity.OrderItem;
 import com.pointdafamilia.pointdafamilia.order.repository.OrderItemRepository;
 import com.pointdafamilia.pointdafamilia.order.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class OrderItemService {
     
-    private final OrderItemRepository orderItemRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
-    private final OrderRepository orderRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
-    private final FoodRepository foodRepository;
+    @Autowired
+    private FoodRepository foodRepository;
 
-    private final DrinkRepository drinkRepository;
+    @Autowired
+    private DrinkRepository drinkRepository;
 
     public OrderItem createOrderItem(Long orderId, Long foodId, Long drinkId, Integer quantity) {
+        
         Optional<Order> order = orderRepository.findById(orderId);
+        
         if (order.isEmpty()) {
             throw new RuntimeException("Order not found!");
         }
@@ -60,7 +65,7 @@ public class OrderItemService {
 
     public OrderItem getOrderItemById(Long id) {
         return orderItemRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Item não encontrado!"));
+            .orElseThrow(() -> new EntityNotFoundException("Item not found!"));
     }
 
     public List<OrderItem> getItemsByOrder(Long orderId) {
