@@ -11,7 +11,7 @@ public record OrderItemDto(
     Drink drink,
     Integer quantity
 ) {
-    OrderItemDto(OrderItem orderItem){
+    public OrderItemDto(OrderItem orderItem){
         this(
             orderItem.getOrder(),
             orderItem.getFood(),

@@ -3,23 +3,10 @@ package com.pointdafamilia.pointdafamilia.order.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.pointdafamilia.pointdafamilia.order.dtos.response.OrderDto;
 import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,10 +21,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Order {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne 
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -57,12 +46,32 @@ public class Order {
         createdAt = LocalDateTime.now();
     }
 
-    public Order(OrderDto data) {
-        this.user = data.user();
-        this.orderItems = data.orderItems();
+    public Order(OrderDto data, User user, List<OrderItem> orderItems) {
+        this.user = user;
+        this.orderItems = orderItems;
         this.orderStatus = data.orderStatus();
-        this.createdAt = data.createdAt();
-        this.totalAmount = data.totalAmount();
+        this.createdAt = LocalDateTime.now(); 
+        this.totalAmount = calculateTotalAmount(orderItems);
     }
 
+    public BigDecimal calculateTotalAmount(List<OrderItem> orderItems) {
+        return orderItems.stream()
+            .map(item -> {
+                String priceStr = item.getFood() != null ? item.getFood().getPrice() : item.getDrink().getPrice();
+                BigDecimal price = convertToBigDecimal(priceStr);
+                return price.multiply(BigDecimal.valueOf(item.getQuantity()));
+            })
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private BigDecimal convertToBigDecimal(String priceStr) {
+        if (priceStr == null || priceStr.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        try {
+            return new BigDecimal(priceStr);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Preço inválido: " + priceStr);
+        }
+    }
 }

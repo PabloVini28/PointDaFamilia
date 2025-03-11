@@ -1,10 +1,12 @@
 package com.pointdafamilia.pointdafamilia.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.pointdafamilia.pointdafamilia.user.dtos.response.UserDto;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
 
+@Repository
 public interface UserRepository extends JpaRepository<User,Long>{
 
     boolean existsByUsername(String username);
