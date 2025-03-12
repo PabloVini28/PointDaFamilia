@@ -2,9 +2,6 @@ package com.pointdafamilia.pointdafamilia.order.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.pointdafamilia.pointdafamilia.drink.entity.Drink;
-import com.pointdafamilia.pointdafamilia.food.entity.Food;
 import com.pointdafamilia.pointdafamilia.order.dtos.response.OrderDto;
 import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
@@ -49,24 +46,16 @@ public class Order {
     }
 
     public Order(OrderDto data){
-        this.orderItems = data.orderItems();
         this.orderStatus = OrderStatus.PENDENTE;
         this.totalAmount = calculateAmout(this.orderItems);
     }
 
-    public double calculateAmout(List<OrderItem> data){
-        double resultado = 0;
-        Food auxFood = new Food();
-        Drink auxDrink = new Drink();
-        for(int i = 0 ; i < data.size() ; i++){
-            if(data.get(i).getFood().equals(auxFood)){
-                resultado += data.get(i).getFood().getPrice();
-            }
-            if(data.get(i).getDrink().equals(auxDrink)){
-                resultado += data.get(i).getDrink().getPrice();
-            }
+    public double calculateAmout(List<OrderItem> orderItems2){
+            double total = 0;
+            for (OrderItem orderItem : orderItems2) {
+            total += orderItem.getTotalAmount();
         }
-        return resultado;
+        return total;
     }
 
     

@@ -44,8 +44,10 @@ public class OrderItem {
     public double getTotalAmount(){
         if(food != null){
             return food.getPrice() * quantity;
-        }else{
+        } else if (drink != null) {
             return drink.getPrice() * quantity;
+        } else {
+            return 0.0;
         }
     }
 
