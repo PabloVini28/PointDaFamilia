@@ -7,7 +7,7 @@ import com.pointdafamilia.pointdafamilia.drink.enums.VolumeType;
 
 public record DrinkDto(
     String name,
-    String price,
+    double price,
     Integer quantity,
     String urlImage,
     VolumeType volumeType,
