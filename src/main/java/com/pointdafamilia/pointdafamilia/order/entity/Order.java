@@ -1,8 +1,10 @@
 package com.pointdafamilia.pointdafamilia.order.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.pointdafamilia.pointdafamilia.drink.entity.Drink;
+import com.pointdafamilia.pointdafamilia.food.entity.Food;
 import com.pointdafamilia.pointdafamilia.order.dtos.response.OrderDto;
 import com.pointdafamilia.pointdafamilia.order.enums.OrderStatus;
 import com.pointdafamilia.pointdafamilia.user.entity.User;
@@ -39,39 +41,33 @@ public class Order {
     private LocalDateTime createdAt;
 
     @NotNull
-    private BigDecimal totalAmount;
+    private double totalAmount;
 
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
 
-    public Order(OrderDto data, User user, List<OrderItem> orderItems) {
-        this.user = user;
-        this.orderItems = orderItems;
+    public Order(OrderDto data){
+        this.orderItems = data.orderItems();
         this.orderStatus = OrderStatus.PENDENTE;
-        this.createdAt = LocalDateTime.now(); 
-        this.totalAmount = calculateTotalAmount(orderItems);
+        this.totalAmount = calculateAmout(this.orderItems);
     }
 
-    public BigDecimal calculateTotalAmount(List<OrderItem> orderItems) {
-        return orderItems.stream()
-            .map(item -> {
-                String priceStr = item.getFood() != null ? item.getFood().getPrice() : item.getDrink().getPrice();
-                BigDecimal price = convertToBigDecimal(priceStr);
-                return price.multiply(BigDecimal.valueOf(item.getQuantity()));
-            })
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    public double calculateAmout(List<OrderItem> data){
+        double resultado = 0;
+        Food auxFood = new Food();
+        Drink auxDrink = new Drink();
+        for(int i = 0 ; i < data.size() ; i++){
+            if(data.get(i).getFood().equals(auxFood)){
+                resultado += data.get(i).getFood().getPrice();
+            }
+            if(data.get(i).getDrink().equals(auxDrink)){
+                resultado += data.get(i).getDrink().getPrice();
+            }
+        }
+        return resultado;
     }
 
-    private BigDecimal convertToBigDecimal(String priceStr) {
-        if (priceStr == null || priceStr.isEmpty()) {
-            return BigDecimal.ZERO;
-        }
-        try {
-            return new BigDecimal(priceStr);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Preço inválido: " + priceStr);
-        }
-    }
+    
 }

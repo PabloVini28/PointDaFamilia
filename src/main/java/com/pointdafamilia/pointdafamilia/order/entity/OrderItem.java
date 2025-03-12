@@ -41,4 +41,12 @@ public class OrderItem {
     @NotNull
     private Integer quantity;
 
+    public double getTotalAmount(){
+        if(food != null){
+            return food.getPrice() * quantity;
+        }else{
+            return drink.getPrice() * quantity;
+        }
+    }
+
 }
