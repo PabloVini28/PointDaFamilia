@@ -11,7 +11,7 @@ public record FoodDto(
     String description,
     List<String> ingredients,
     Integer quantity,
-    String price,
+    double price,
     String urlImage,
     @Enumerated(EnumType.STRING)FoodType type
 ) {
@@ -20,7 +20,7 @@ public record FoodDto(
             food.getDescription(), 
             food.getIngredients(), 
             food.getQuantity(), 
-            food.getPrice(), 
+            food.getPrice(),
             food.getUrlImage(), 
             food.getType());
     }

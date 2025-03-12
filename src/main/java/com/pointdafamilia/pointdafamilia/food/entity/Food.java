@@ -43,7 +43,7 @@ public class Food {
     private Integer quantity;
 
     @NotNull
-    private String price;
+    private double price;
 
     @NotBlank
     private String urlImage;
